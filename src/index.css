@@ -15,7 +15,9 @@ body {
 .invisible{
     display: none;
 }
-
+.margined{
+  margin-top: 5px;
+}
 .boxclose{
 float: right;
     margin-top: -60px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import arrOfBooks from '../dataArray';
+import ArrOfBooks from '../DataArray';
 
 const Home = () => (
 	<div>
@@ -12,7 +12,7 @@ const FullList = () => (
 	<div>
 		<ul>
 			{
-				arrOfBooks.all().map(p => (
+				ArrOfBooks.all().map(p => (
 					<li key={p.id}>
 						<Link to={`/basicExample/list/${p.id}`}>{p.author}</Link>
 					</li>
@@ -23,7 +23,7 @@ const FullList = () => (
 )
 
 const BookShelf = (props) => {
-	const book = arrOfBooks.get(
+	const book = ArrOfBooks.get(
 		props.match.params.id
 	);
 	// console.log(props.match);

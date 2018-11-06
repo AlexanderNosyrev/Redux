@@ -1,6 +1,4 @@
-import React from 'react';
-
-const arrOfBooks = {
+const ArrOfBooks = {
 	books:[
 		{
 			id: 'Tolstoy',
@@ -25,4 +23,4 @@ const arrOfBooks = {
 	}
 };
 
-export default arrOfBooks;
+export default ArrOfBooks;

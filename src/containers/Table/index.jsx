@@ -54,7 +54,6 @@ class BooksTable extends React.Component{
 
 	removeBook = (index) => {
 		const books = this.state.books;
-
 		const booksUpdated = books.filter((book, i) => (i!==index));
 		this.setState({ books: booksUpdated });
 	};
@@ -65,18 +64,20 @@ class BooksTable extends React.Component{
 			<div>
 				<div id='Input-field'>
 					<input
+						className="margined"
 						placeholder="Автор"
 						value={author}
 						onChange={this.authorChange}
 					/>
 					<br/>
 					<input
+						className="margined"
 						placeholder="Книга"
 						value={book}
 						onChange={this.bookChange}
 					/>
 					<br/>
-					<input type="submit" value="Добавить" onClick={this.addBook}></input>
+					<input className="margined" type="submit" value="Добавить" onClick={this.addBook}></input>
 				</div>
 				<div id="menu">
 					{books.map((book, i) => (
