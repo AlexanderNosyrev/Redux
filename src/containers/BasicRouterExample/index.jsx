@@ -22,25 +22,43 @@ const FullList = () => (
 	</div>
 )
 
-const BookShelf = (props) => {
+// const BookShelf = (props) => {
+// 	const book = ArrOfBooks.get(
+// 		props.match.params.id
+// 	);
+// 	// console.log(props.match);
+// }
+
+function BookShelf(props){
 	const book = ArrOfBooks.get(
 		props.match.params.id
 	);
-	// console.log(props.match);
-	return (
-		<div>
-			<h2>{book.author}</h2>
-			<h3>{book.books}</h3>
-			<Link to='/basicExample/list'>Back</Link>
-		</div>
-	)
+	if(book.type == 'theirs'){
+		return (
+			<div className='paddinged'>
+				<h2>{book.author}</h2>
+				<h3>{book.books}</h3>
+				<Link to='/basicExample/list'>Back</Link>
+			</div>
+		)
+	} else{
+		return(
+			<div className='paddinged'>
+				<h3 className='error-text'>Ошибочный выбор. Попробуйте еще раз.</h3>
+				<Link to='/basicExample/list'>Back</Link>
+			</div>
+		)
+	}
 }
 
 const List = () => (
-	<Switch>
-		<Route exact path='/basicExample/list' component={FullList}/>
-		<Route path='/basicExample/list/:id' component={BookShelf}/>
-	</Switch>
+	<div>
+		<h3 className='paddinged'>Выберите зарубежного автора</h3>
+		<Switch>
+			<Route exact path='/basicExample/list' component={FullList}/>
+			<Route path='/basicExample/list/:id' component={BookShelf}/>
+		</Switch>
+	</div>
 )
 
 const Main = () => (
