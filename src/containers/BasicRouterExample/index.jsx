@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ArrOfBooks from '../DataArray';
+import ArrOfBooks from '../dataArray';
 
 const Home = () => (
 	<div>
@@ -33,7 +33,7 @@ function BookShelf(props){
 	const book = ArrOfBooks.get(
 		props.match.params.id
 	);
-	if(book.type == 'theirs'){
+	if(book.type === 'theirs'){
 		return (
 			<div className='paddinged'>
 				<h2>{book.author}</h2>
