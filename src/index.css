@@ -15,8 +15,15 @@ body {
 .invisible{
     display: none;
 }
+.error-text{
+  color:red;
+}
+.paddinged{
+  padding-left: 40px;
+}
 .margined{
   margin-top: 5px;
+  margin-left: 5px;
 }
 .boxclose{
 float: right;
