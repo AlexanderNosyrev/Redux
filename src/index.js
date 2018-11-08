@@ -1,23 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import {App} from './App';
-import { BrowserRouter } from 'react-router-dom'
-// import registerServiceWorker from './registerServiceWorker';
-// import injectSheet  from 'jss';
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './components/App'
+import rootReducer from './reducers'
 
-// const theme = {
-// 	colors: {
-// 		main: 'red',
-// 		dark
-// 	}
-// }
+const store = createStore(rootReducer)
 
-
-ReactDOM.render(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
-	document.getElementById('root')
-);
-//registerServiceWorker();
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
