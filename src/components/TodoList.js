@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Todo from './Todo'
 
-const TodoList = ({ todos, toggleTodo }) => (
+const TodoList = ({ data, toggleTodo }) => (
   <ul>
-    {todos.map(todo =>
+    {data.map(todo =>
       <Todo
         key={todo.id}
         {...todo}
@@ -15,7 +15,7 @@ const TodoList = ({ todos, toggleTodo }) => (
 )
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
+  data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
