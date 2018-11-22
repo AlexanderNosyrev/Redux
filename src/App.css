@@ -75,3 +75,14 @@ button{
   cursor: pointer;
   margin-left: 5px;
 }
+
+input{
+  height: 30px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+span{
+  margin: 5px;
+  font-size: 16px;
+}

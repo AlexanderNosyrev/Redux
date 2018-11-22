@@ -1,14 +1,17 @@
 import {SET_YEAR} from '../actions/PageActions';
 
-const initialState = {
+export const initialState = {
 	year: '2018',
-	photos: []
+	photos: [],
+	name: 'Филимон',
+	isFetching: false
 }
 
 export function pageReducer(state = initialState, action){
 	switch(action.type){
 		case SET_YEAR:
-		return{...state, year: action.payload}
+			return{...state, year: action.payload};
+
 
 	default:
 		return state

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SET_YEAR from '../actions/PageActions';
 
 export class Page extends React.Component {
 	onBtnClick = (e) => {
 		const yearCur = e.currentTarget.innerText;
 		this.props.setYear(yearCur);
+		console.log(this.props)
 	}
 	render() {
 		const { year, photos } = this.props
