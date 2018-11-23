@@ -1,5 +1,8 @@
 import {SET_USER} from '../actions/PageActions';
-import {initialState} from './page';
+
+const initialState = {
+	name: 'Филимон',
+}
 
 export function userReducer(state = initialState, action){
 	switch(action.type){
