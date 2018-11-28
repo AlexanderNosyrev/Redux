@@ -93,3 +93,9 @@ span{
   border-radius: 4px;
   margin: 4px 0 0 0;
 }
+
+.visibilityFilter{
+  float: right;
+  text-align: right;
+  margin: 0 5px 0 0;
+}
