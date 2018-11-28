@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/configureStore';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import {App} from './App';
-import { BrowserRouter } from 'react-router-dom'
+
 // import registerServiceWorker from './registerServiceWorker';
 // import injectSheet  from 'jss';
 
@@ -15,9 +18,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 
 ReactDOM.render(
-	<BrowserRouter>
+	<Provider store={store}>
 		<App />
-	</BrowserRouter>,
+	</Provider>,
 	document.getElementById('root')
 );
-//registerServiceWorker();
