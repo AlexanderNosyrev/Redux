@@ -7,7 +7,7 @@ export const initialState = {
 export function listReducer(state = initialState, action){
 	switch(action.type){
 		case SET_VISIBILITY:
-		return{...state, visible: action.payload}
+		return {...state, visible: action.payload}
 
 	default:
 		return state

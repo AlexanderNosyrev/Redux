@@ -43,10 +43,6 @@
   border: 1px solid black;
 }
 
-ul{
-    list-style-type: none;
-}
-
 nav{
   margin:15px;
 }
@@ -66,7 +62,7 @@ button{
   outline: 0;
   padding: 0 2rem;
   text-transform: uppercase;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
   color: #fff;
   background-color: #6383a8;
   text-align: center;
@@ -77,25 +73,26 @@ button{
 }
 
 input{
+  margin: 5px;
   height: 30px;
   border-radius: 4px;
   font-size: 16px;
 }
 
-span{
+label{
   margin: 5px;
   font-size: 16px;
 }
 
-.listContainer li{
+.listContainer p{
   border: 1px solid grey;
   width: 900px;
   border-radius: 4px;
-  margin: 4px 0 0 0;
+  margin: 5px 0 0 5px;
 }
 
 .visibilityFilter{
-  float: right;
+  top: 55px;
   text-align: right;
-  margin: 0 5px 0 0;
+  margin: 5px;
 }
