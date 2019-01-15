@@ -55,3 +55,35 @@ nav{
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.content{
+  margin: 15px;
+}
+
+.field{
+  border: 1px solid grey;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.field p {
+  font-size: 20px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+#gameField{
+  width: 115px;
+  height: 115px;
+}
+
+*, ::after, ::before{
+  box-sizing: content-box!important;
+}
