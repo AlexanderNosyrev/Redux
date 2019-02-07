@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import {users, arrLogins, arrPasswords} from '../components/users';
 // import PropTypes from 'prop-types';
 
 class DataInputComponent extends Component {
 	onClick = (e) => {
 		let val = this.props.input.inputText;
-		if (val !== undefined && val !== ''){
+		console.log(val)
+		let isLoginCorrect = arrLogins.indexOf(val);
+		this.props.registrationInProcess();
+		if (val !== undefined && val !== '' && isLoginCorrect != -1){
 			this.props.addTextField(val);
 			this.props.setVisibility(true);
+			this.props.registrationSucceded(val);
 		} else {
+			this.props.registrationFailed(val);
 			e.preventDefault();
 		}
 	}
@@ -23,10 +29,15 @@ class DataInputComponent extends Component {
 	render() {
 		return (
 			<div>
-				<label>Введите какой-нибудь текст
-					<input onBlur={this.onBlur} type='text' placeholder='Текст'></input>
-				</label>
-				<button onClick={this.onClick}>Добавить</button>
+				<form>
+					<p><label>Введите ваш логин
+						<input onBlur={this.onBlur} type='text' placeholder='логин'></input>
+					</label></p>
+					<p><label>Введите ваш пароль
+						<input onBlur={this.onBlur} type='text' placeholder='пароль'></input>
+					</label></p>
+					<button onClick={this.onClick}>Добавить</button>
+				</form>
 			</div>
 		);
 	}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DataInput from './containers/DataInput.jsx';
-import List from './containers/List';
+import List from './containers/List.jsx';
 import './App.css';
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ListElem from './ListElem';
+import ListElem from '../components/ListElem';
 import {setVisibility} from '../actions/InputActions';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -19,9 +19,9 @@ class List extends Component {
 		const {list, elem} = this.props;
 		return (
 			<div>
+				{(list.visible === false && elem.length > 0) ? <button onClick={this.onLinkClickShow} className={'visibilityFilter'}>Показать</button> : true}
 				{list.visible === true ? <ListElem /> : true}
 				{list.visible === true ? <button onClick={this.onLinkClickHide} className={'visibilityFilter'}>Закрыть</button> : true}
-				{(list.visible === false && elem.length > 0) ? <button onClick={this.onLinkClickShow} className={'visibilityFilter'}>Показать</button> : true}
 			</div>
 		);
 	}
