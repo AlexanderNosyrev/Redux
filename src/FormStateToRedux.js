@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FormSpy } from 'react-final-form'
-import { updateFormState } from './finalFormDuck'
+import rootReducer from './ducks'
 
-const FormStateToRedux = ({ form, updateFormState }) => (
-  <FormSpy onChange={state => updateFormState(form, state)} />
+const FormStateToRedux = ({ form, rootReducer }) => (
+  <FormSpy onChange={state => rootReducer(form, state)} />
 )
 
-export default connect(undefined, { updateFormState })(FormStateToRedux)
+export default connect(state, { rootReducer })(FormStateToRedux)

@@ -1,28 +1,54 @@
-// QUACK! This is a duck. https://github.com/erikras/ducks-modular-redux
+export {Users, checkConditions} from '../components/Users'
 
-// Actions
-const UPDATE_FORM_STATE = 'UPDATE_FORM_STATE'
+const LOG_IN = 'LOG_IN'
+const LOG_OUT = 'LOG_OUT'
+const LOG_FAILURE = 'LOG_FAILURE'
 
-// Reducer
-export default function reducer(state = {}, action = {}) {
-  switch (action.type) {
-    case UPDATE_FORM_STATE:
-      return {
-        ...state,
-        [action.form]: action.payload
-      }
-    default:
-      return state
-  }
+const initialState = {
+	isAuthorised: false,
+	user: '',
+	error: null
 }
 
-// Action Creators
-export const rootReducer = (form, state) => ({
-  type: UPDATE_FORM_STATE,
-  form,
-  payload: state
+export const logIn = (user) => ({
+	type: LOG_IN,
+	payload: user
 })
 
-// Selectors
-export const getFormState = (state, form) =>
-  (state && state.finalForm && state.finalForm[form]) || {}
+export const logOut = (state) => ({
+	type: LOG_OUT,
+	payload: state
+})
+
+export const logFailure = (error) => ({
+	type: LOG_FAILURE,
+	payload: error
+})
+
+export default function rootReducer(state = initialState, action = {}) {
+	switch (action.type) {
+	case LOG_IN:
+		return {
+			...state,
+			user: action.payload,
+			isAuthorised: true,
+			error: null
+		}
+		case LOG_OUT:
+		return {
+			...state,
+			user: null,
+			isAuthorised: false,
+			error: null
+		}
+		case LOG_FAILURE:
+		return {
+			...state,
+			user: null,
+			isAuthorised: false,
+			error: 'Имя пользователя или пароль введены не верно'
+		}
+	default:
+		return state
+	}
+}
