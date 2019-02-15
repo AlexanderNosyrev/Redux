@@ -17,7 +17,7 @@ export default function reducer(state = {}, action = {}) {
 }
 
 // Action Creators
-export const updateFormState = (form, state) => ({
+export const rootReducer = (form, state) => ({
   type: UPDATE_FORM_STATE,
   form,
   payload: state
