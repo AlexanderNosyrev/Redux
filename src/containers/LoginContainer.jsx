@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
 import {logFailure, logIn} from '../ducks'
 import Login from '../components/Login'
 
@@ -11,11 +12,10 @@ class LoginContainer extends Component {
 			isAuthorised,
 			logFailure,
 			logIn,
-			classes,
 			onLoginChange,
 			onPasswordChange
 		} = this.props;
-
+		console.log(this.props)
 		return (
 			<div>
 				<Login
@@ -23,7 +23,6 @@ class LoginContainer extends Component {
 				isAuthorised = {isAuthorised}
 				logFailure = {logFailure}
 				logIn = {logIn}
-				classes= {classes}
 				onLoginChange = {onLoginChange}
 				onPasswordChange = {onPasswordChange}/>
 			</div>
@@ -35,7 +34,8 @@ const mapStateToProps = (store) => {
 	// console.log(store);
 	return{
 		user: store.user,
-		error: store.error
+		error: store.error,
+		isAuthorised: store.isAuthorised
 	}
 }
 
@@ -45,5 +45,14 @@ const mapDispatchToProps = (dispatch) => {
 		logIn: (user) => dispatch(logIn(user))
 	}
 }
+
+Login.propTypes = {
+	isAuthorised: PropTypes.bool.isRequired,
+	error: PropTypes.string,
+	logFailure: PropTypes.func,
+	logIn: PropTypes.func,
+	onLoginChange: PropTypes.func,
+	onPasswordChange: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

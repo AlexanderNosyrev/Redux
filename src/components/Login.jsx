@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
-import {checkConditions} from './Users.js'
+import {checkConditions} from './Users.js';
+import PropTypes from 'prop-types';
+
 
 class Login extends Component {
 
@@ -29,45 +31,73 @@ class Login extends Component {
 	}
 
 	render() {
-		const classes = this.props
-		console.log(this.props)
+		const {classes, error} = this.props;
 		return (
-			<form onSubmit={this.handleSunbmit}>
-				<div>
-					<label>Login</label>
-					<input
-						className={classes.myInput}
-						value={this.state.login}
-						onChange={this.onLoginChange}
-						name='login'
-						type='text'
-						placeholder='Введите логин'
-					/>
-				</div>
-				<div>
-					<label>Password</label>
-					<input
-						className={classes.myInput}
-						value={this.state.password}
-						onChange={this.onPasswordChange}
-						name='password'
-						type='text'
-						placeholder='Введите пароль'
-					/>
-				</div>
-				<button className={classes.myButton} type="submit">
-					Submit
-				</button>
-			</form>
+			<div>
+				<form className={classes.myForm} onSubmit={this.handleSunbmit}>
+					<div className={classes.myField}>
+						<label className={classes.myLabel}>Login</label>
+						<input
+							className={classes.myInput}
+							value={this.state.login}
+							onChange={this.onLoginChange}
+							name='login'
+							type='text'
+							placeholder='Введите логин'
+						/>
+					</div>
+					<div className={classes.myField}>
+						<label className={classes.myLabel}>Password</label>
+						<input
+							className={classes.myInput}
+							value={this.state.password}
+							onChange={this.onPasswordChange}
+							name='password'
+							type='text'
+							placeholder='Введите пароль'
+						/>
+					</div>
+					<button className={classes.myButton} type="submit">
+						Submit
+					</button>
+				</form>
+				<h3 className={classes.h3}>{error}</h3>
+			</div>
 		);
 	}
 }
 
+Login.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
 const styles = {
+	myForm: {
+		float: 'left',
+	},
+	h3: {
+		display: 'flex',
+		width: '100%',
+		color: 'red',
+		margin: 5
+	},
 	myButton: {
 		fontSize: 13.5,
 		fontStyle: 'italic',
-		margin: 5,
+		marginTop: 5,
+		padding:{
+			top: 5, 
+			right: 20,
+			bottom: 5,
+			left: 20
+		}
+	},
+	myField: {
+		display: 'flex',
+	},
+	myLabel: {
+		margin: 'auto',
+		marginLeft: '0'
 	},
 	myInput: {
 		borderRadius: 4,
@@ -76,5 +106,6 @@ const styles = {
 		borderColor: 'black'
 	}
 };
+
 
 export default injectSheet(styles)(Login);
