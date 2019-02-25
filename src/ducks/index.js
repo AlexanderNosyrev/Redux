@@ -1,5 +1,3 @@
-export {Users, checkConditions} from '../components/Users'
-
 const LOG_IN = 'LOG_IN'
 const LOG_OUT = 'LOG_OUT'
 const LOG_FAILURE = 'LOG_FAILURE'

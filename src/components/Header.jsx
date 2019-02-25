@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import injectSheet from 'react-jss';
-import { NavLink } from 'react-router-dom';
+import { NavLink as RRNavLink} from 'react-router-dom';
+import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink} from 'reactstrap';
 
-class Header extends Component { // eslint-disable-line
-	render() {
-		const {isAuthorised, classes, children} = this.props;
-		return (
-			<div>
-				<header >
-					<ul className={classes.myMenu}>
-					{/*<li className={classes.myMenuBlock}>
-												<NavLink to="/login" replace>Форма входа</NavLink>
-											</li>*/}
-						<li className={classes.myMenuBlock}>
-							<NavLink exact  to="/news" replace>Новости</NavLink>
-						</li>
-						<li className={classes.myMenuBlock}>
-								<NavLink to="/profile" replace>Профиль</NavLink>
-						</li>
-						<li className={classes.myMenuBlock}>
-							<NavLink exact to="/" replace>Главная</NavLink>
-						</li>
-					</ul>
-				</header>
-			</div>
-		);
-	}
+const Header = ({isAuthorised, classes}) => { // eslint-disable-line
+	return (
+		<div>
+			<header >
+				<Nav className={classes.myMenu} pills>
+					<NavItem>
+						<NavLink tag={RRNavLink} to="/login" replace>Форма входа</NavLink>
+					</NavItem>
+					<NavItem>
+						<NavLink tag={RRNavLink} exact to="/news" replace>Новости</NavLink>
+					</NavItem>
+					<NavItem>
+						<NavLink tag={RRNavLink} to="/profile" replace>Профиль</NavLink>
+					</NavItem>
+					<NavItem>
+						<NavLink tag={RRNavLink} exact to="/" replace>Главная</NavLink>
+					</NavItem>
+				</Nav>
+			</header>
+		</div>
+	);
 }
 
 const mapStateToProps = (store) => {

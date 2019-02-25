@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
-import {checkConditions} from './Users.js';
+import {checkConditions} from '../datas/Users.js';
 import PropTypes from 'prop-types';
 
 
@@ -9,15 +9,13 @@ class Login extends Component {
 	constructor(props){
 		super(props);
 		this.state = {login: '', password: ''}
-		this.onLoginChange = this.onLoginChange.bind(this);
-		this.onPasswordChange = this.onPasswordChange.bind(this);
 	}
 
-	onLoginChange(e){
+	onLoginChange = (e) => {
 		this.setState({login: e.target.value})
 	}
 
-	onPasswordChange(e){
+	onPasswordChange = (e) => {
 		this.setState({password: e.target.value})
 	}
 
@@ -85,6 +83,7 @@ const styles = {
 		fontSize: 13.5,
 		fontStyle: 'italic',
 		marginTop: 5,
+		borderRadius: 4,
 		padding:{
 			top: 5, 
 			right: 20,
@@ -106,6 +105,5 @@ const styles = {
 		borderColor: 'black'
 	}
 };
-
 
 export default injectSheet(styles)(Login);
