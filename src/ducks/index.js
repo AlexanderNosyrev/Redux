@@ -5,7 +5,8 @@ const LOG_FAILURE = 'LOG_FAILURE'
 const initialState = {
 	isAuthorised: false,
 	user: '',
-	error: null
+	error: null,
+	productName: 'Двойная защита'
 }
 
 export const logIn = (user) => ({
