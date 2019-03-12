@@ -21,7 +21,6 @@ const mapStateToProps = (store) => {
 	// console.log(store);
 	return{
 		isAuthorised: store.isAuthorised,
-		user: store.user
 	}
 }
 

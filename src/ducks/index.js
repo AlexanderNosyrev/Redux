@@ -1,13 +1,18 @@
 const LOG_IN = 'LOG_IN'
 const LOG_OUT = 'LOG_OUT'
-const LOG_FAILURE = 'LOG_FAILURE'
+const CHECKBOX_CHECK = 'CHECKBOX_CHECK'
 
 const initialState = {
 	isAuthorised: false,
-	user: '',
+	isCheckBoxChecked: false,
 	error: null,
 	productName: 'Двойная защита'
 }
+
+export const checkboxCheck = (state) => ({
+	type: CHECKBOX_CHECK,
+	payload: state
+})
 
 export const logIn = (user) => ({
 	type: LOG_IN,
@@ -19,33 +24,24 @@ export const logOut = (state) => ({
 	payload: state
 })
 
-export const logFailure = (error) => ({
-	type: LOG_FAILURE,
-	payload: error
-})
-
 export default function rootReducer(state = initialState, action = {}) {
 	switch (action.type) {
+	case CHECKBOX_CHECK: 
+		return {
+			...state,
+			isCheckBoxChecked: !state.isCheckBoxChecked
+		}
 	case LOG_IN:
 		return {
 			...state,
-			user: action.payload,
 			isAuthorised: true,
 			error: null
 		}
-		case LOG_OUT:
+	case LOG_OUT:
 		return {
 			...state,
-			user: null,
 			isAuthorised: false,
 			error: null
-		}
-		case LOG_FAILURE:
-		return {
-			...state,
-			user: null,
-			isAuthorised: false,
-			error: 'Имя пользователя или пароль введены не верно'
 		}
 	default:
 		return state
