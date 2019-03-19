@@ -4,16 +4,14 @@ import injectSheet from 'react-jss';
 import { Input} from 'reactstrap';
 
 class CheckBoxField extends Component {
-	onClick = (e) => {
-		console.log(this)
-	}
 	render(){
 		const {
 			label,
-			classes
+			classes,
+			onClick
 		} = this.props;
 		return(
-			<div onClick={this.onClick}>
+			<div onClick={onClick}>
 				<Input type="checkbox" className={classes.agree} />
 				<label className={classes.disclaimer}>{label}</label>
 			</div>

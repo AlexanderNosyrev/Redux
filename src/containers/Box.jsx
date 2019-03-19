@@ -5,6 +5,8 @@ import { Form, Field } from 'react-final-form'
 import { Container, Row, Col, InputGroup, Input, Button } from 'reactstrap';
 import TextInput from '../components/TextInput.jsx';
 import Title from '../components/Title.jsx';
+import {checkboxCheck, isCheckBoxChecked} from '../ducks';
+import {store} from '../store';
 import BlockTitle from '../components/BlockTitle.jsx';
 import GroupOfButtons from '../components/GroupOfButtons.jsx';
 import CheckBoxField from '../components/CheckBoxField.jsx';
@@ -16,8 +18,16 @@ class Box extends Component {
 	handleSubmit = (e) => {
 		console.log('Submit!')
 	}
+	onClick = (e) => {
+		console.log(store.getState())
+	}
 	render() {
-		const {productName, classes} = this.props;
+		const {
+			productName,
+			classes,
+			checkboxCheck,
+			isCheckBoxChecked
+		} = this.props;
 		return (
 			<div>
 				<Title name={productName}/>
@@ -31,7 +41,7 @@ class Box extends Component {
 									<BlockTitle title={"Данные о полисе:"}/>
 								</div>
 							</Col>
-							<Col sm='9' className={classes.section}>
+							<Col sm='9' onClick={this.onClick} className={classes.section}>
 								<Row className={classes.rowField}>
 									<Col sm='4' className={classes.centered}>
 										Номер полиса:
@@ -227,6 +237,7 @@ class Box extends Component {
 							<Col sm='12'>
 								<Field
 									component={CheckBoxField}
+									onClick={checkboxCheck}
 									label={
 										<div>
 											<p>Осуществляя активацию полиса он-лайн и заполняя настоящие формы я даю согласие ООО СК "ВТБ Страхование" 
@@ -244,7 +255,7 @@ class Box extends Component {
 						</Row>
 						<Row>
 							<Col className={classes.rightOriented} sm='12'>
-								<Button color='primary' type="submit">
+								<Button disabled={isCheckBoxChecked ? false : true} color='primary' type="submit">
 										Активировать
 								</Button>
 							</Col>
@@ -280,7 +291,14 @@ const mapStateToProps = (store) => {
 	// console.log(store);
 	return{
 		productName: store.productName,
+		isCheckBoxChecked: store.isCheckBoxChecked
 	}
 }
 
-export default connect(mapStateToProps)(injectSheet(styles)(Box))
+const mapDispatchToProps = (dispatch) => {
+	return{
+		checkboxCheck: (isCheckBoxChecked) => dispatch(checkboxCheck(isCheckBoxChecked))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Box))
