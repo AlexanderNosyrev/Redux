@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import injectSheet from 'react-jss';
+import moment from "moment";
 import { Form, Field } from 'react-final-form'
 import { Container, Row, Col, InputGroup, Input, Button } from 'reactstrap';
 import TextInput from '../components/TextInput.jsx';
@@ -28,6 +29,8 @@ class Box extends Component {
 			checkboxCheck,
 			isCheckBoxChecked
 		} = this.props;
+		const fromDate = moment().format('D.MM.YYYY');
+		const toDate = moment().add(1, 'years').format('D.MM.YYYY');
 		return (
 			<div>
 				<Title name={productName}/>
@@ -78,7 +81,7 @@ class Box extends Component {
 								</Row>
 								<Row>
 									<Col sm='12'>
-										<p>Полис действует с: <span style={{fontWeight: 'bold'}}>26.03.2019</span> по <span style={{fontWeight: 'bold'}}>25.03.2020</span></p>
+										<p>Полис действует с: <span style={{fontWeight: 'bold'}}>{fromDate}</span> по <span style={{fontWeight: 'bold'}}>{toDate}</span></p>
 									</Col>
 								</Row>
 								<Row>
