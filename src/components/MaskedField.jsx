@@ -4,30 +4,34 @@ import MaskedInput from 'react-text-mask';
 import injectSheet from 'react-jss';
 import { FormGroup, Input } from 'reactstrap';
 
-class PhoneField extends Component {
-	state={
-		placeholder: "+7__________"
+class MaskedField extends Component {
+	state = {
+		isFocused: false
 	}
-	onFocus = (e) =>{
-		this.setState({placeholder: '+7(✻✻✻)✻✻✻-✻✻-✻✻'})
+	onFocus = (e) => {
+		this.setState({isFocused: true})
 	}
 	onBlur = (e) => {
-		this.setState({placeholder: '+7__________'})
+		this.setState({isFocused: false})
+	}
+	onClick = (e) => {
+		console.log(this.state);
 	}
 	render(){
-		const {label, classes} = this.props;
+		const {label, classes, placeholder, placeholderFocused, mask} = this.props;
+		const isFocused = this.state.isFocused;
 		return(
 			<div>
 				<label>{label}</label>
 				<FormGroup>
 					<MaskedInput
-						mask={['+', 7, '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-',/\d/, /\d/]}
 						onFocus={this.onFocus}
 						onBlur={this.onBlur}
+						mask={mask}
 						className="form-control form-control-sm"
-						placeholder={this.state.placeholder}
+						placeholder={ isFocused ? placeholderFocused : placeholder}
+						placeholderChar={"✻"}
 						guide={true}
-						placeholderChar="✻"
 						autoComplete="off"
 					/>
 				</FormGroup>
@@ -39,4 +43,4 @@ class PhoneField extends Component {
 const styles = (theme) => ({
 })
 
-export default injectSheet(styles)(PhoneField);
+export default injectSheet(styles)(MaskedField);

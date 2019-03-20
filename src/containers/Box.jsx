@@ -9,6 +9,7 @@ import Title from '../components/Title.jsx';
 import {checkboxCheck, isCheckBoxChecked} from '../ducks';
 import {store} from '../store';
 import BlockTitle from '../components/BlockTitle.jsx';
+import MaskedField from '../components/MaskedField.jsx';
 import GroupOfButtons from '../components/GroupOfButtons.jsx';
 import CheckBoxField from '../components/CheckBoxField.jsx';
 import PhoneField from '../components/PhoneField.jsx';
@@ -52,7 +53,10 @@ class Box extends Component {
 									<Col sm='4'>
 										<InputGroup>
 											<Field
-											component={TextInput}
+											component={MaskedField}
+											placeholderFocused={'✻✻✻✻✻'}
+											placeholder={'пять цифр'}
+											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
 											needLabel={true}
 											label="S"
 											/>
@@ -61,7 +65,10 @@ class Box extends Component {
 									<Col sm='4'>
 										<InputGroup>
 											<Field
-											component={TextInput}
+											component={MaskedField}
+											placeholderFocused={'✻✻✻✻✻✻✻'}
+											placeholder={'семь цифр'}
+											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
 											needLabel={true}
 											label=" - "
 											/>
@@ -74,7 +81,10 @@ class Box extends Component {
 									</Col>
 									<Col sm='8'>
 										<Field
-											component={TextInput}
+											component={MaskedField}
+											placeholderFocused={'✻✻✻✻✻✻'}
+											placeholder={'шесть цифр'}
+											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
 											needLabel={true}
 											/>
 									</Col>
