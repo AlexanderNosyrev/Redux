@@ -7,11 +7,16 @@ class GroupOfButtons extends Component {
 	state = {
 		selected: false
 	}
-	onClick = (e) => {
-		this.setState({selected: true})
+	onButtonClick = (button) => {
+		this.setState( (prevState) => ({selected: !prevState.selected}));
+		this.props.input.onChange({
+			name: button.name,
+			code: button.code
+		});
+		this.props.input.onBlur();
 	}
 	render(){
-		const {classes, label, options} = this.props;
+		const {input, classes, label, options} = this.props;
 		return(
 			<div>
 				<label className={classes.red}>{label}</label>
@@ -19,7 +24,7 @@ class GroupOfButtons extends Component {
 					<ButtonGroup className={classes.buttonFromGroup}>
 						{options.map((button, index) => (
 								<Button
-									onClick={this.onClick}
+									onClick={() => this.onButtonClick(button)}
 									className={classes.btnDefault}
 									size='sm'
 									key={index}

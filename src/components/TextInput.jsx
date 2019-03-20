@@ -6,16 +6,22 @@ import { FormGroup, Label, Input, FormText } from 'reactstrap';
 class TextInput extends Component {
 	render(){
 		const {
+			input,
+			type,
 			label,
 			needLabel,
 			placeholder,
-			placeholderNotLabel
+			placeholderNotLabel,
 		} = this.props;
 		return(
 			<div>
 				<Label >{needLabel ? label : ''}</Label>
 				<FormGroup>
-					<Input bsSize='sm' placeholder={placeholderNotLabel ? placeholder : label}/>
+					<Input 
+					{...input}
+					bsSize='sm'
+					type={type}
+					placeholder={placeholderNotLabel ? placeholder : label}/>
 				</FormGroup>
 			</div>
 		)

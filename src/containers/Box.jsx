@@ -17,8 +17,8 @@ import PhoneField from '../components/PhoneField.jsx';
 // import List from './containers/List.jsx';
 
 class Box extends Component {
-	handleSubmit = (e) => {
-		console.log('Submit!')
+	onSubmit = (values) => {
+		console.log(values)
 	}
 	onClick = (e) => {
 		console.log(store.getState())
@@ -36,244 +36,276 @@ class Box extends Component {
 			<div>
 				<Title name={productName}/>
 				<Form 
-				onSubmit={this.handleSubmit}
+				onSubmit={this.onSubmit}
 				render={({ handleSubmit, pristine, invalid, values }) =>(
-					<div>
-						<Row className={classes.formBlock}>
-							<Col sm='3'>
-								<div id='content' style={{marginTop: 70}}>
-									<BlockTitle title={"Данные о полисе:"}/>
-								</div>
-							</Col>
-							<Col sm='9' onClick={this.onClick} className={classes.section}>
-								<Row className={classes.rowField}>
-									<Col sm='4' className={classes.centered}>
-										Номер полиса:
-									</Col>
-									<Col sm='4'>
-										<InputGroup>
+					<form onSubmit={handleSubmit}>
+						<div>
+							<Row className={classes.formBlock}>
+								<Col sm='3'>
+									<div id='content' style={{marginTop: 70}}>
+										<BlockTitle title={"Данные о полисе:"}/>
+									</div>
+								</Col>
+								<Col sm='9' onClick={this.onClick} className={classes.section}>
+									<Row className={classes.rowField}>
+										<Col sm='4' className={classes.centered}>
+											Номер полиса:
+										</Col>
+										<Col sm='4'>
+											<InputGroup>
+												<Field
+													name="content.policy.seria"
+													component={MaskedField}
+													placeholderFocused={'✻✻✻✻✻'}
+													placeholder={'пять цифр'}
+													mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
+													needLabel={true}
+													label="S"
+												/>
+											</InputGroup>
+										</Col>
+										<Col sm='4'>
+											<InputGroup>
+												<Field
+													name="content.policy.number"
+													component={MaskedField}
+													placeholderFocused={'✻✻✻✻✻✻✻'}
+													placeholder={'семь цифр'}
+													mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
+													needLabel={true}
+													label=" - "
+												/>
+											</InputGroup>
+										</Col>
+									</Row>
+									<Row className={classes.rowField}>
+										<Col sm='4' className={classes.centered}>
+											Код активации полиса:
+										</Col>
+										<Col sm='8'>
 											<Field
-											component={MaskedField}
-											placeholderFocused={'✻✻✻✻✻'}
-											placeholder={'пять цифр'}
-											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
-											needLabel={true}
-											label="S"
-											/>
-										</InputGroup>
-									</Col>
-									<Col sm='4'>
-										<InputGroup>
+												name="content.policy.code"
+												component={MaskedField}
+												placeholderFocused={'✻✻✻✻✻✻'}
+												placeholder={'шесть цифр'}
+												mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
+												needLabel={true}
+												/>
+										</Col>
+									</Row>
+									<Row>
+										<Col sm='12'>
+											<p>Полис действует с: <span style={{fontWeight: 'bold'}}>{fromDate}</span> по <span style={{fontWeight: 'bold'}}>{toDate}</span></p>
+										</Col>
+									</Row>
+									<Row>
+										<Col sm='12'>
+											<p>Вступает в силу с 00 часов 00 минут пятнадцатого дня, следующего за датой активации, и действует в течение одного года.</p>
+										</Col>
+									</Row>
+								</Col>
+							</Row>
+							<Row className={classes.formBlock}>
+								<Col sm='3'>
+									<div id='content' style={{marginTop: 70}}>
+										<BlockTitle title={"Страхователь:"}/>
+									</div>
+								</Col>
+								<Col sm='9' className={classes.section}>
+									<Row className={classes.rowField}>
+										<Col sm='4'>
 											<Field
-											component={MaskedField}
-											placeholderFocused={'✻✻✻✻✻✻✻'}
-											placeholder={'семь цифр'}
-											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
-											needLabel={true}
-											label=" - "
+												name="content.policyHolder.lastName"
+												component={TextInput}
+												type='text'
+												needLabel={false}
+												label='Фамилия:'
+												/>
+										</Col>
+										<Col sm='4'>
+											<Field
+												name="content.policyHolder.firstName"
+												component={TextInput}
+												type='text'
+												needLabel={false}
+												label='Имя:'
+												/>
+										</Col>
+										<Col sm='4'>
+											<Field
+												name="content.policyHolder.middleName"
+												component={TextInput}
+												type='text'
+												needLabel={false}
+												label='Отчество:'
+												/>
+										</Col>
+									</Row>
+									<Row >
+										<Col sm='4'>
+											<Field
+												name="content.policyHolder.birthDate"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Дата рождения:'
+												/>
+										</Col>
+										<Col sm='8'>
+											<Field
+												name="content.policyHolder.sex"
+												component={GroupOfButtons}
+												label="Пол:"
+												options={[
+													{code: 'male', name: 'Мужской', label: 'М'},
+													{code: 'female', name: 'Женский', label: 'Ж'}
+												]}
 											/>
-										</InputGroup>
-									</Col>
-								</Row>
-								<Row className={classes.rowField}>
-									<Col sm='4' className={classes.centered}>
-										Код активации полиса:
-									</Col>
-									<Col sm='8'>
-										<Field
-											component={MaskedField}
-											placeholderFocused={'✻✻✻✻✻✻'}
-											placeholder={'шесть цифр'}
-											mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
-											needLabel={true}
+										</Col>
+									</Row>
+									<Row>
+										<Col sm='4'>
+											<Field
+												name="content.policyHolder.phone"
+												size='sm'
+												component={PhoneField}
+												label='Мобильный телефон:'
 											/>
-									</Col>
-								</Row>
-								<Row>
-									<Col sm='12'>
-										<p>Полис действует с: <span style={{fontWeight: 'bold'}}>{fromDate}</span> по <span style={{fontWeight: 'bold'}}>{toDate}</span></p>
-									</Col>
-								</Row>
-								<Row>
-									<Col sm='12'>
-										<p>Вступает в силу с 00 часов 00 минут пятнадцатого дня, следующего за датой активации, и действует в течение одного года.</p>
-									</Col>
-								</Row>
-							</Col>
-						</Row>
-						<Row className={classes.formBlock}>
-							<Col sm='3'>
-								<div id='content' style={{marginTop: 70}}>
-									<BlockTitle title={"Страхователь:"}/>
-								</div>
-							</Col>
-							<Col sm='9' className={classes.section}>
-								<Row className={classes.rowField}>
-									<Col sm='4'>
-										<Field
-											component={TextInput}
-											needLabel={false}
-											label='Фамилия:'
+										</Col>
+										<Col sm='8'>
+											<Field
+												name="content.policyHolder.email"
+												component={TextInput}
+												type='text'
+												label='Адрес электронной почты:'
+												needLabel={true}
+												placeholderNotLabel={true}
+												placeholder='Введите адрес электронной почты:'
 											/>
-									</Col>
-									<Col sm='4'>
-										<Field
-											component={TextInput}
-											needLabel={false}
-											label='Имя:'
+										</Col>
+									</Row>
+									<Row>
+										<Col sm='4'></Col>
+										<Col sm='8'>
+											<Field
+												name="content.policyHolder.email1"
+												component={TextInput}
+												type='text'
+												label=''
+												needLabel={true}
+												placeholderNotLabel={true}
+												placeholder='Подтвердите адрес электронной почты:'
 											/>
-									</Col>
-									<Col sm='4'>
-										<Field
-											component={TextInput}
-											needLabel={false}
-											label='Отчество:'
-											/>
-									</Col>
-								</Row>
-								<Row >
-									<Col sm='4'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Дата рождения:'
-											/>
-									</Col>
-									<Col sm='8'>
-										<Field
-											component={GroupOfButtons}
-											label="Пол:"
-											options={[
-												{code: 'male', name: 'Мужской', label: 'М'},
-												{code: 'female', name: 'Женский', label: 'Ж'}
-											]}
-										/>
-									</Col>
-								</Row>
-								<Row>
-									<Col sm='4'>
-										<Field
-											size='sm'
-											component={PhoneField}
-											label='Мобильный телефон:'
-										/>
-									</Col>
-									<Col sm='8'>
-										<Field
-											component={TextInput}
-											label='Адрес электронной почты:'
-											needLabel={true}
-											placeholderNotLabel={true}
-											placeholder='Введите адрес электронной почты:'
-										/>
-									</Col>
-								</Row>
-								<Row>
-									<Col sm='4'></Col>
-									<Col sm='8'>
-										<Field
-											component={TextInput}
-											label=''
-											needLabel={true}
-											placeholderNotLabel={true}
-											placeholder='Подтвердите адрес электронной почты:'
-										/>
-									</Col>
-								</Row>
-								<Row>
-									<Col sm='4'></Col>
-									<Col sm='8'>
-										<p>Приложение №2 - Информация, предоставляемая при активации, будет выслана на указанный E-mail</p>
-									</Col>
-								</Row>
-							</Col>
-						</Row>
-						<Row className={classes.formBlock}>
-							<Col sm='3'>
-								<div id='content' style={{marginTop: 70}}>
-									<BlockTitle title={"Застрахованное имущество:"}/>
-								</div>
-							</Col>
-							<Col sm='9' className={classes.section}>
-								<Row className={classes.rowField}>
-									<Col sm='6'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Марка'
-											placeholderNotLabel={true}
-											placeholder='Впишите марку:'
-											/>
-									</Col>
-									<Col sm='6'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Модель'
-											placeholderNotLabel={true}
-											placeholder='Впишите модель:'
-											/>
-									</Col>
-								</Row>
-								<Row className={classes.rowField}>
-									<Col sm='6'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Серийный номер/Emei устройства:'
-											placeholderNotLabel={true}
-											/>
-									</Col>
-									<Col sm='6'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Стоимость имущества (руб.):'
-											placeholderNotLabel={true}
-											/>
-									</Col>
-								</Row>
-								<Row className={classes.rowField}>
-									<Col sm='6'>
-										<Field
-											component={TextInput}
-											needLabel={true}
-											label='Дата покупки:'
-											placeholderNotLabel={true}
-											placeholder='дд.мм.гггг'
-											/>
-									</Col>
-								</Row>
-							</Col>
-						</Row>
-						<Row>
-							<Col sm='12'>
-								<Field
-									component={CheckBoxField}
-									onClick={checkboxCheck}
-									label={
-										<div>
-											<p>Осуществляя активацию полиса он-лайн и заполняя настоящие формы я даю согласие ООО СК "ВТБ Страхование" 
-											(далее – Компания, адрес местонахождения: Чистопрудный бульвар, д. 8, стр. 1, Москва, Россия, 101000) на 
-											обработку персональных данных и информации, в том числе на сбор, систематизацию, блокирование, уничтожение 
-											персональных данных и иных действия, предусмотренные Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» 
-											в целях определения условий и заключения со мной договора страхования, проведения маркетинговых исследований. При этом 
-											такое согласие я даю на неограниченный срок и могу отозвать согласие в любое время путем передачи Компании соответствующего 
-											уведомления.</p>
-											<p>Безопасность передаваемой информации обеспечивается с помощью современных протоколов обеспечения безопасности в Интернет (SSL/TLS).</p>
-										</div>
-									}
-								/>
-							</Col>
-						</Row>
-						<Row>
-							<Col className={classes.rightOriented} sm='12'>
-								<Button disabled={isCheckBoxChecked ? false : true} color='primary' type="submit">
-										Активировать
-								</Button>
-							</Col>
-						</Row>
-					</div>
+										</Col>
+									</Row>
+									<Row>
+										<Col sm='4'></Col>
+										<Col sm='8'>
+											<p>Приложение №2 - Информация, предоставляемая при активации, будет выслана на указанный E-mail</p>
+										</Col>
+									</Row>
+								</Col>
+							</Row>
+							<Row className={classes.formBlock}>
+								<Col sm='3'>
+									<div id='content' style={{marginTop: 70}}>
+										<BlockTitle title={"Застрахованное имущество:"}/>
+									</div>
+								</Col>
+								<Col sm='9' className={classes.section}>
+									<Row className={classes.rowField}>
+										<Col sm='6'>
+											<Field
+												name="content.object.mark"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Марка'
+												placeholderNotLabel={true}
+												placeholder='Впишите марку:'
+												/>
+										</Col>
+										<Col sm='6'>
+											<Field
+												name="content.object.model"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Модель'
+												placeholderNotLabel={true}
+												placeholder='Впишите модель:'
+												/>
+										</Col>
+									</Row>
+									<Row className={classes.rowField}>
+										<Col sm='6'>
+											<Field
+												name="content.object.emei"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Серийный номер/Emei устройства:'
+												placeholderNotLabel={true}
+												/>
+										</Col>
+										<Col sm='6'>
+											<Field
+												name="content.object.cost"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Стоимость имущества (руб.):'
+												placeholderNotLabel={true}
+												/>
+										</Col>
+									</Row>
+									<Row className={classes.rowField}>
+										<Col sm='6'>
+											<Field
+												name="content.object.buyDate"
+												component={TextInput}
+												type='text'
+												needLabel={true}
+												label='Дата покупки:'
+												placeholderNotLabel={true}
+												placeholder='дд.мм.гггг'
+												/>
+										</Col>
+									</Row>
+								</Col>
+							</Row>
+							<Row>
+								<Col sm='12'>
+									<Field
+										component={CheckBoxField}
+										onClick={checkboxCheck}
+										label={
+											<div>
+												<p>Осуществляя активацию полиса он-лайн и заполняя настоящие формы я даю согласие ООО СК "ВТБ Страхование" 
+												(далее – Компания, адрес местонахождения: Чистопрудный бульвар, д. 8, стр. 1, Москва, Россия, 101000) на 
+												обработку персональных данных и информации, в том числе на сбор, систематизацию, блокирование, уничтожение 
+												персональных данных и иных действия, предусмотренные Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» 
+												в целях определения условий и заключения со мной договора страхования, проведения маркетинговых исследований. При этом 
+												такое согласие я даю на неограниченный срок и могу отозвать согласие в любое время путем передачи Компании соответствующего 
+												уведомления.</p>
+												<p>Безопасность передаваемой информации обеспечивается с помощью современных протоколов обеспечения безопасности в Интернет (SSL/TLS).</p>
+											</div>
+										}
+									/>
+								</Col>
+							</Row>
+							<Row>
+								<Col className={classes.rightOriented} sm='12'>
+									<Button disabled={isCheckBoxChecked ? false : true} color='primary' type="submit">
+											Активировать
+									</Button>
+								</Col>
+							</Row>
+							<Row>
+								<Col><pre>{JSON.stringify(values, 0, 2)}</pre></Col>
+							</Row>
+						</div>
+					</form>
 				)}
 				/>
 			</div>

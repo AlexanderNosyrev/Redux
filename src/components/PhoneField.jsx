@@ -15,12 +15,13 @@ class PhoneField extends Component {
 		this.setState({placeholder: '+7__________'})
 	}
 	render(){
-		const {label, classes} = this.props;
+		const {input, label, classes} = this.props;
 		return(
 			<div>
 				<label>{label}</label>
 				<FormGroup>
 					<MaskedInput
+						{...input}
 						mask={['+', 7, '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-',/\d/, /\d/]}
 						onFocus={this.onFocus}
 						onBlur={this.onBlur}

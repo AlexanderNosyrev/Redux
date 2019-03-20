@@ -18,13 +18,14 @@ class MaskedField extends Component {
 		console.log(this.state);
 	}
 	render(){
-		const {label, classes, placeholder, placeholderFocused, mask} = this.props;
+		const {input, label, classes, placeholder, placeholderFocused, mask} = this.props;
 		const isFocused = this.state.isFocused;
 		return(
 			<div>
 				<label>{label}</label>
 				<FormGroup>
 					<MaskedInput
+						{...input}
 						onFocus={this.onFocus}
 						onBlur={this.onBlur}
 						mask={mask}
