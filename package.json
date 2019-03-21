@@ -11,6 +11,7 @@
     "object-path": "^0.11.4",
     "path-to-regexp": "^2.4.0",
     "react": "^16.8.3",
+    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.3",
     "react-final-form": "^4.0.2",
     "react-final-form-arrays": "^2.0.1",

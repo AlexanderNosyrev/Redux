@@ -8,9 +8,10 @@ class CheckBoxField extends Component {
 		const {
 			label,
 			classes,
+			onClick
 		} = this.props;
 		return(
-			<div>
+			<div onClick={onClick}>
 				<Input type="checkbox" className={classes.agree} />
 				<label className={classes.disclaimer}>{label}</label>
 			</div>

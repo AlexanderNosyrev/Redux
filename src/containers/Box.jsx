@@ -9,6 +9,7 @@ import Title from '../components/Title.jsx';
 import {checkboxCheck, isCheckBoxChecked} from '../ducks';
 import {store} from '../store';
 import BlockTitle from '../components/BlockTitle.jsx';
+import DatePickerComponent from '../datepicker/DatePickerComponent.jsx';
 import MaskedField from '../components/MaskedField.jsx';
 import GroupOfButtons from '../components/GroupOfButtons.jsx';
 import CheckBoxField from '../components/CheckBoxField.jsx';
@@ -263,9 +264,9 @@ class Box extends Component {
 										<Col sm='6'>
 											<Field
 												name="content.object.buyDate"
-												component={TextInput}
-												type='text'
+												component={DatePickerComponent}
 												needLabel={true}
+												type='text'
 												label='Дата покупки:'
 												placeholderNotLabel={true}
 												placeholder='дд.мм.гггг'
