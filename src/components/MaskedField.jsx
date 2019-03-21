@@ -41,6 +41,15 @@ class MaskedField extends Component {
 	}
 }
 
+MaskedField.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.any).isRequired,
+	label: PropTypes.string,
+	placeholder: PropTypes.string,
+	placeholderFocused: PropTypes.string,
+	mask: PropTypes.array,
+	input: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
 const styles = (theme) => ({
 })
 

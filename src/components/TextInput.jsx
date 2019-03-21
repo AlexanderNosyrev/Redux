@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
-import { FormGroup, Label, Input, FormText } from 'reactstrap';
+// import injectSheet from 'react-jss';
+import { FormGroup, Label, Input } from 'reactstrap';
 
 class TextInput extends Component {
 	render(){
@@ -27,5 +27,15 @@ class TextInput extends Component {
 		)
 	}
 }
+
+TextInput.propTypes = {
+	// classes: PropTypes.objectOf(PropTypes.any).isRequired,
+	label: PropTypes.string,
+	needLabel: PropTypes.bool,
+	placeholderNotLabel: PropTypes.bool,
+	placeholder: PropTypes.string,
+	type: PropTypes.string.isRequired,
+	input: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default (TextInput);

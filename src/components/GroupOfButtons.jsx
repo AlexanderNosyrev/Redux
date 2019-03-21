@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Button, ButtonGroup, FormGroup, label } from 'reactstrap';
+import { Button, ButtonGroup, FormGroup } from 'reactstrap';
 
 class GroupOfButtons extends Component {
 	state = {
@@ -9,6 +9,7 @@ class GroupOfButtons extends Component {
 	}
 	onButtonClick = (button) => {
 		this.setState( (prevState) => ({selected: !prevState.selected}));
+		this.props.input.onFocus();
 		this.props.input.onChange({
 			name: button.name,
 			code: button.code
@@ -25,10 +26,10 @@ class GroupOfButtons extends Component {
 						{options.map((button, index) => (
 								<Button
 									onClick={() => this.onButtonClick(button)}
-									className={classes.btnDefault}
+									className={(button.code === input.value.code) ? classes.btnPrimary : classes.btnDefault}
+									color={(button.code === input.value.code) ? 'primary' : 'secondary'}
 									size='sm'
 									key={index}
-									color={this.state.selected ? 'primary' : 'secondary'}
 								>
 									{button.label}
 							</Button>
@@ -39,6 +40,13 @@ class GroupOfButtons extends Component {
 		)
 	}
 }
+
+GroupOfButtons.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.any).isRequired,
+	label: PropTypes.string,
+	input: PropTypes.objectOf(PropTypes.any).isRequired,
+	options: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
 const styles = (theme) => ({
 	buttonFromGroup: {

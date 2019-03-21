@@ -37,6 +37,12 @@ class PhoneField extends Component {
 	}
 }
 
+PhoneField.propTypes = {
+	input: PropTypes.objectOf(PropTypes.any).isRequired,
+	label: PropTypes.string,
+	classes: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
 const styles = (theme) => ({
 })
 

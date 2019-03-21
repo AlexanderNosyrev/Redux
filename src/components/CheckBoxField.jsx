@@ -8,16 +8,20 @@ class CheckBoxField extends Component {
 		const {
 			label,
 			classes,
-			onClick
 		} = this.props;
 		return(
-			<div onClick={onClick}>
+			<div>
 				<Input type="checkbox" className={classes.agree} />
 				<label className={classes.disclaimer}>{label}</label>
 			</div>
 		)
 	}
 }
+
+CheckBoxField.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.any).isRequired,
+	label: PropTypes.object.isRequired,
+};
 
 const styles = (theme) =>({
 	disclaimer: {
