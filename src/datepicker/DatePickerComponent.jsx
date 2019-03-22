@@ -10,9 +10,16 @@ import 'react-day-picker/lib/style.css';
 
 class DatePickerComponent extends Component {
 	state = {
-		startDate: new Date()
+		selectedDay: null
+	};
+	onChange = (day) => {
+		this.setState({ selectedDay: day.getTime() });
+		this.props.input.onChange({
+			value: day.getTime()
+		})
 	};
 	render(){
+		const { selectedDay } = this.state;
 		const {
 			input,
 			label,
@@ -26,12 +33,15 @@ class DatePickerComponent extends Component {
 			localeUtils: MomentLocaleUtils,
 			locale: "ru"
 		}
+		console.log('this.state', this.state);
+		console.log('this.props.input.value', this.props.input.value)
 		return(
 			<div>
 				<Label >{needLabel ? label : ''}</Label>
 				<FormGroup>
-					<DayPickerInput 
+					<DayPickerInput
 						style={{width:'100%'}}
+						onDayChange={this.onChange}
 						dayPickerProps={dayPickerProps}
 						formatDate={formatDate}
 						parseDate={parseDate}

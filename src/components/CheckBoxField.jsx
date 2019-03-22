@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import injectSheet from 'react-jss';
 import { Input} from 'reactstrap';
 
 class CheckBoxField extends Component {
+	onChange = () => {
+		console.log('changed')
+	}
 	render(){
 		const {
 			label,
 			classes,
-			onClick
+			onClick,
+			isCheckBoxChecked
 		} = this.props;
 		return(
 			<div onClick={onClick}>
-				<Input type="checkbox" className={classes.agree} />
+				<Input type="checkbox" className={classes.agree} onChange={this.onChange} checked={isCheckBoxChecked ? 'checked' : false} />
 				<label className={classes.disclaimer}>{label}</label>
 			</div>
 		)
@@ -38,4 +43,10 @@ const styles = (theme) =>({
 	}
 })
 
-export default injectSheet(styles)(CheckBoxField);
+const mapStateToProps = (store) => {
+	return{
+		isCheckBoxChecked: store.isCheckBoxChecked
+	}
+}
+
+export default connect(mapStateToProps)(injectSheet(styles)(CheckBoxField));

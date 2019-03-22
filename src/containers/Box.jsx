@@ -146,10 +146,11 @@ class Box extends Component {
 										<Col sm='4'>
 											<Field
 												name="content.policyHolder.birthDate"
-												component={TextInput}
+												component={DatePickerComponent}
 												type='text'
 												needLabel={true}
 												label='Дата рождения:'
+												placeholder='ДД. ММ. ГГГГ'
 												/>
 										</Col>
 										<Col sm='8'>
