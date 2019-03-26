@@ -141,7 +141,7 @@ my-app/
     App.js
     App.test.js
     index.css
-    index.js
+    index.jsx
     logo.svg
 ```
 
