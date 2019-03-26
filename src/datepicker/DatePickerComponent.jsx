@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Label } from 'reactstrap';
 // import injectSheet from 'react-jss';
-import DayPicker from 'react-day-picker';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import MomentLocaleUtils, {formatDate, parseDate} from 'react-day-picker/moment';
 import 'moment/locale/ru';
@@ -19,22 +18,18 @@ class DatePickerComponent extends Component {
 		})
 	};
 	render(){
-		const { selectedDay } = this.state;
 		const {
-			input,
 			label,
 			classes,
 			needLabel,
-			placeholder,
-			placeholderNotLabel,
 		} = this.props;
 
 		const dayPickerProps = {
 			localeUtils: MomentLocaleUtils,
 			locale: "ru"
 		}
-		console.log('this.state', this.state);
-		console.log('this.props.input.value', this.props.input.value)
+		// console.log('this.state', this.state);
+		// console.log('this.props.input.value', this.props.input.value)
 		return(
 			<div>
 				<Label >{needLabel ? label : ''}</Label>
