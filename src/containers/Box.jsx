@@ -7,6 +7,7 @@ import { Row, Col, InputGroup, Button } from 'reactstrap';
 import TextInput from '../components/TextInput.jsx';
 import Title from '../components/Title.jsx';
 import {checkboxCheck} from '../ducks';
+import * as plugin from '../utils/plugin';
 import {store} from '../store';
 import BlockTitle from '../components/BlockTitle.jsx';
 import DatePickerComponent from '../datepicker/DatePickerComponent.jsx';
@@ -38,6 +39,7 @@ class Box extends Component {
 				<Title name={productName}/>
 				<Form 
 				onSubmit={this.onSubmit}
+				validate={plugin.validate}
 				render={({ handleSubmit, pristine, invalid, values }) =>(
 					<form onSubmit={handleSubmit}>
 						<div>
