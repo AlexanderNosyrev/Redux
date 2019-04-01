@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CustomPopover from './CustomPopover.jsx';
 import injectSheet from 'react-jss';
 import { Button, ButtonGroup, FormGroup } from 'reactstrap';
 
 class GroupOfButtons extends Component {
 	state = {
-		selected: false
+		selected: false,
+		hover: false
 	}
+	onMouseEnter = () => {
+		this.setState({
+			hover: true
+		});
+	}
+	onMouseLeave = () => {
+		this.setState({
+			hover: false
+		});
+	}
+	errorRef = React.createRef();
 	onButtonClick = (button) => {
 		this.setState( (prevState) => ({selected: !prevState.selected}));
 		this.props.input.onFocus();
@@ -17,16 +30,26 @@ class GroupOfButtons extends Component {
 		this.props.input.onBlur();
 	}
 	render(){
-		const {input, classes, label, options} = this.props;
+		const {
+			input,
+			classes,
+			label,
+			options,
+			meta
+		} = this.props;
 		return(
 			<div>
 				<label className={classes.red}>{label}</label>
 				<FormGroup>
-					<ButtonGroup className={classes.buttonFromGroup}>
+					<ButtonGroup className={`${classes.buttonFromGroup} ${(meta.error && meta.touched) ? classes.errorField : classes.default}`}
+					onMouseLeave={this.onMouseLeave}
+					onMouseEnter={this.onMouseEnter}>
 						{options.map((button, index) => (
 								<Button
 									onClick={() => this.onButtonClick(button)}
-									className={(button.code === input.value.code) ? classes.btnPrimary : classes.btnDefault}
+									className={
+										(button.code === input.value.code) ? classes.btnPrimary : classes.btnDefault
+									}
 									color={(button.code === input.value.code) ? 'primary' : 'secondary'}
 									size='sm'
 									key={index}
@@ -35,6 +58,13 @@ class GroupOfButtons extends Component {
 							</Button>
 						))}
 					</ButtonGroup>
+					{meta.error && <span ref={this.errorRef}></span>}
+					{meta.error && meta.touched && <CustomPopover 
+						target={this.errorRef}
+						isOpen={this.state.hover}
+						placement='bottom'
+						popoverText={meta.error}
+					/>}
 				</FormGroup>
 			</div>
 		)
@@ -51,6 +81,10 @@ GroupOfButtons.propTypes = {
 const styles = (theme) => ({
 	buttonFromGroup: {
 		display: 'flex'
+	},
+	errorField: {
+		border: '1px solid #ee1d23',
+		boxShadow: 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ee1d23'
 	},
 	btnDefault: {
 		color: '#333',

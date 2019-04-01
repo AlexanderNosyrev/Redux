@@ -10,6 +10,7 @@ import {checkboxCheck} from '../ducks';
 import * as plugin from '../utils/plugin';
 import {store} from '../store';
 import BlockTitle from '../components/BlockTitle.jsx';
+import EmailInput from '../components/EmailInput.jsx';
 import DatePickerComponent from '../datepicker/DatePickerComponent.jsx';
 import MaskedField from '../components/MaskedField.jsx';
 import GroupOfButtons from '../components/GroupOfButtons.jsx';
@@ -179,7 +180,7 @@ class Box extends Component {
 										<Col sm='8'>
 											<Field
 												name="content.policyHolder.email"
-												component={TextInput}
+												component={EmailInput}
 												type='text'
 												label='Адрес электронной почты:'
 												needLabel={true}
@@ -193,7 +194,7 @@ class Box extends Component {
 										<Col sm='8'>
 											<Field
 												name="content.policyHolder.email1"
-												component={TextInput}
+												component={EmailInput}
 												type='text'
 												label=''
 												needLabel={true}

@@ -7,9 +7,20 @@ import { FormGroup } from 'reactstrap';
 
 class PhoneField extends Component {
 	state={
-		placeholder: "+7__________"
+		placeholder: "+7__________",
+		hover: false
 	}
 	errorRef = React.createRef();
+	onMouseEnter = () => {
+		this.setState({
+			hover: true
+		});
+	}
+	onMouseLeave = () => {
+		this.setState({
+			hover: false
+		});
+	}
 	onFocus = (e) =>{
 		this.setState({placeholder: '+7(✻✻✻)✻✻✻-✻✻-✻✻'})
 	}
@@ -32,6 +43,8 @@ class PhoneField extends Component {
 						mask={['+', 7, '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-',/\d/, /\d/]}
 						onFocus={this.onFocus}
 						onBlur={this.onBlur}
+						onMouseLeave={this.onMouseLeave}
+						onMouseEnter={this.onMouseEnter}
 						className={`form-control form-control-sm ${(meta.error&& meta.touched) ? classes.errorField : classes.default}`}
 						placeholder={this.state.placeholder}
 						guide={true}
@@ -39,7 +52,12 @@ class PhoneField extends Component {
 						autoComplete="off"
 					/>
 					{meta.error && meta.touched && <span ref={this.errorRef}></span>}
-					{meta.error && meta.touched && <CustomPopover target={this.errorRef} placement='top' isOpen={this.state.hover} popoverText={meta.error} />}
+					{meta.error && meta.touched && <CustomPopover 
+						target={this.errorRef}
+						placement='top'
+						isOpen={this.state.hover}
+						popoverText={meta.error}
+					/>}
 				</FormGroup>
 			</div>
 		)
