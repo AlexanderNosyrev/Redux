@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import injectSheet from 'react-jss';
-import { FormGroup, Input } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 
 class MaskedField extends Component {
 	state = {
