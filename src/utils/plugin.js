@@ -32,5 +32,14 @@ export const validate = (values) => {
 	if (!phone) {
 		op.set(errors, 'content.policyHolder.phone', 'Поле обязательно для заполнения!');
 	}
+	if (!sex) {
+		op.set(errors, 'content.policyHolder.sex', 'Поле обязательно для выбора!');
+	}
+	if (!email) {
+		op.set(errors, 'content.policyHolder.email', 'Поле обязательно для заполнения!');
+	}
+	if (!email1) {
+		op.set(errors, 'content.policyHolder.email1', 'Поле обязательно для заполнения!');
+	}
 	return errors;
 }

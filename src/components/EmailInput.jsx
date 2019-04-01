@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import CustomPopover from './CustomPopover.jsx';
 import { FormGroup, Label, Input } from 'reactstrap';
 
-class TextInput extends Component {
+class EmailInput extends Component {
 	state={
 		hover: false
 	};
@@ -52,7 +52,7 @@ class TextInput extends Component {
 						target={this.errorRef}
 						placement='top'
 						isOpen={this.state.hover}
-						popoverText={meta.error} 
+						popoverText={meta.error}
 					/>}
 				</FormGroup>
 			</div>
@@ -67,7 +67,7 @@ const styles = theme => ({
 	}
 })
 
-TextInput.propTypes = {
+EmailInput.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.any).isRequired,
 	meta: PropTypes.objectOf(PropTypes.any).isRequired,
 	label: PropTypes.string,
@@ -78,4 +78,4 @@ TextInput.propTypes = {
 	input: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default injectSheet(styles)(TextInput);
+export default injectSheet(styles)(EmailInput);

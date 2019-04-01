@@ -49,7 +49,6 @@ class DatePickerComponent extends Component {
 			localeUtils: MomentLocaleUtils,
 			locale: "ru"
 		}
-		console.log(meta)
 		// console.log('this.state', this.state);
 		// console.log('this.props.input.value', this.props.input.value)
 		return(
