@@ -29,6 +29,8 @@ export const validate = (values) => {
 	} else if ((moment().diff(birthDate.value, 'years')) < 18) {
 		op.set(errors, 'content.policyHolder.birthDate', 'Минимальный возраст страхователя - 18 лет!');
 	}
-
+	if (!phone) {
+		op.set(errors, 'content.policyHolder.phone', 'Поле обязательно для заполнения!');
+	}
 	return errors;
 }
