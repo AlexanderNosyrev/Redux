@@ -8,7 +8,6 @@ import '../App.css';
 class App extends Component {
 	render() {
 		const {user, page, loadPhotos} = this.props;
-		console.log(this.props)
 		return (
 			<div className='app'>
 				<Page 
@@ -18,7 +17,10 @@ class App extends Component {
 					isLoaded={page.isLoaded}
 					loadText={page.loadText}
 				/>
-				<User name={user.name}/>
+				<User
+					user={user}
+					isLoaded={page.isLoaded}
+				/>
 			</div>
 		)
 	}

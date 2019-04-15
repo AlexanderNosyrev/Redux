@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 
 export class User extends Component{
 	render(){
-		const {name} = this.props;
+		console.log(this.props)
+		const { isLoaded, user } = this.props;
 		return(
 			<div className='ib user'>
-				<p>Привет, {name}</p>
+				<p>{isLoaded ? `Привет, ${user.user.name}` : 'Привет, Аноним'}</p>
 			</div>
 		)
 	}
 }
 
 User.propTypes  = {
-	name: PropTypes.string.isRequired
+	isLoaded: PropTypes.bool.isRequired
 }
